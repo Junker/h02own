@@ -55,7 +55,7 @@ type OwntracksData struct {
 	Acc        uint32  `json:"acc"`
 	Vel        float64 `json:"vel"`
 	Tst        int64   `json:"tst"`
-	Created_at int64   `json:"created_a"`
+	Created_at int64   `json:"created_at"`
 	Conn       string  `json:"conn"`
 	Tid        string  `json:"tid"`
 	T          string  `json:"t"`
