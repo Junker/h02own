@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/Junker/tcp_server"
 	"github.com/alexflint/go-arg"
 	"github.com/eclipse/paho.mqtt.golang"
-	"github.com/firstrow/tcp_server"
 	"github.com/jinzhu/configor"
 	"github.com/oriser/regroup"
 	"log"
@@ -239,6 +239,7 @@ func main() {
 	server.OnNewClient(TcpConnectHandler)
 	server.OnNewMessage(TcpNewMessage)
 	server.OnClientConnectionClosed(TcpConnectLostHandler)
+	server.MessageTerminator('#')
 
 	mqtt_opts := mqtt.NewClientOptions()
 	mqtt_opts.AddBroker(fmt.Sprintf("tcp://%s:%d", config.MQTT.Host, config.MQTT.Port))
