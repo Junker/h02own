@@ -1,6 +1,6 @@
 # H02Own
 
-The H02Own is a Owntracks gateway for H02 protocol devices.  
+The H02Own is a TCP Server Owntracks gateway for H02 protocol devices.  
 H02Own obtains GPS positions from these devices and publishes those over MQTT in OwnTracks JSON format as location objects.
 
 # Supported devices
@@ -16,9 +16,12 @@ H02, H-02A, H-02B, TX-2, H-06, H08, GTLT3, NT201, NT202, S31, LK109, LK106, LK20
   --debug                Debug
 ```
 
-### Config Example
+# Config file
+supported YAML, JSON, TOML config files formats
+
+### Config Example (YAML)
 ```yaml
-host: localhost # optional, default: localhost 
+host: localhost # optional, default: 0.0.0.0 
 port: 1122 # required
 
 mqtt:
