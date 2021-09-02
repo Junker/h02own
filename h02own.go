@@ -23,7 +23,7 @@ var args struct {
 
 var config struct {
 	Port uint   `required:"true"`
-	Host string `required:"true" default:"localhost"`
+	Host string `required:"true" default:"0.0.0.0"`
 
 	MQTT struct {
 		Host     string `default:"localhost"`
@@ -228,7 +228,7 @@ func main() {
 
 	arg.MustParse(&args)
 
-	err := configor.New(&configor.Config{ErrorOnUnmatchedKeys: true, Verbose: args.Verbose, Debug: args.Debug}).Load(&config, args.ConfigPath)
+	err := configor.New(&configor.Config{ErrorOnUnmatchedKeys: true, Verbose: args.Debug, Debug: args.Debug}).Load(&config, args.ConfigPath)
 
 	if err != nil {
 		log.Fatalf("Error loading config from: %s, error: %s", args.ConfigPath, err)
