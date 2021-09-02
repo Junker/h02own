@@ -171,6 +171,13 @@ func SendOwntracksMessage(json_data []byte, device_cfg *deviceConfig) {
 	mqtt_client.Publish(topic, 0, true, string(json_data))
 }
 
+func FixCoord(coord string) float64 {
+	degrees, _ := strconv.ParseInt(coord[:len(coord)-7], 0, 16)
+	minutes, _ := strconv.ParseFloat(coord[len(coord)-7:], 16)
+
+	return float64(degrees) + (minutes / 60)
+}
+
 func ParseH02Message(message string) (*H02Data, error) {
 	var matches, err = H02LocationMessageRegex.Groups(message)
 	if err != nil {
@@ -189,14 +196,12 @@ func ParseH02Message(message string) (*H02Data, error) {
 
 	data.GPSDataValid = matches["gps_valid"] == "A"
 
-	data.Latitude, _ = strconv.ParseFloat(matches["latitude"], 32)
-	data.Latitude /= 100
+	data.Latitude = FixCoord(matches["latitude"])
 	if matches["latitude_symbol"] == "S" {
 		data.Latitude *= -1
 	}
 
-	data.Longitude, _ = strconv.ParseFloat(matches["longitude"], 32)
-	data.Longitude /= 100
+	data.Longitude = FixCoord(matches["longitude"])
 	if matches["longitude_symbol"] == "W" {
 		data.Longitude *= -1
 	}
