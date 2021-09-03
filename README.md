@@ -34,7 +34,7 @@ mqtt:
   
 devices:
   - h02:
-      id: 31121432168 # required. ID from H02 protocol, usually IMEI of device
+      id: 31121432168 # required. Device ID from H02 protocol, usually IMEI of device
     owntracks:
       tid: CA # required
       name: car # required, will be used in MQTT topic e.g. owntracks/car/gps
