@@ -138,7 +138,7 @@ func ConvertH02DataToOwntracksJson(h02data *H02Data, device_cfg *deviceConfig) [
 		t = "i"
 	}
 
-	var accuracy uint32 = 0
+	var accuracy uint32 = 3
 	if !h02data.GPSDataValid {
 		accuracy = 1000 // ????
 	}
